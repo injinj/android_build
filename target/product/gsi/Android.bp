@@ -217,3 +217,52 @@ android_system_image {
         (default, default): false,
     }),
 }
+
+// system.img for aosp_arm64_aohp (GSI + AOHP agent harness; Debian container template)
+android_system_image {
+    name: "aosp_arm64_aohp_system_image",
+    defaults: ["android_gsi_defaults"],
+    deps: [
+        // AOHP
+        "AOHPAgentDriver",
+        "privapp-permissions-aohp",
+        "aohp-containerd",
+        "aohp-rootfs-debian",
+        "aohp_cgroup_conf",
+        // handheld_system_ext
+        "AccessibilityMenu",
+        "WallpaperCropper",
+
+        // telephony_system_ext
+        "EmergencyInfo",
+
+        // handheld_product
+        "AvatarPicker",
+        "Calendar",
+        "Contacts",
+        "DeskClock",
+        "Gallery2",
+        "Music",
+        "preinstalled-packages-platform-handheld-product.xml",
+        "QuickSearchBox",
+        "SettingsIntelligence",
+        "frameworks-base-overlays",
+
+        // telephony_product
+        "ImsServiceEntitlement",
+        "preinstalled-packages-platform-telephony-product.xml",
+
+        // more AOSP packages
+        "initial-package-stopped-states-aosp.xml",
+        "PhotoTable",
+        "preinstalled-packages-platform-aosp-product.xml",
+        "ThemePicker",
+    ] + select(product_variable("debuggable"), {
+        true: ["frameworks-base-overlays-debug"],
+        default: [],
+    }),
+    enabled: select(soong_config_variable("gsi", "building_gsi"), {
+        true: true,
+        default: false,
+    }),
+}

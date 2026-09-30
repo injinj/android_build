@@ -35,6 +35,7 @@
 ifneq ($(TARGET_BUILD_APPS),)
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/aosp_arm64.mk \
+    $(LOCAL_DIR)/aosp_arm64_aohp.mk \
     $(LOCAL_DIR)/aosp_arm64_fullmte.mk \
     $(LOCAL_DIR)/aosp_arm64_plus_armv7.mk \
     $(LOCAL_DIR)/aosp_arm.mk \
@@ -48,6 +49,7 @@ else
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/aosp_64bitonly_x86_64.mk \
     $(LOCAL_DIR)/aosp_arm64.mk \
+    $(LOCAL_DIR)/aosp_arm64_aohp.mk \
     $(LOCAL_DIR)/aosp_arm64_fullmte.mk \
     $(LOCAL_DIR)/aosp_arm64_plus_armv7.mk \
     $(LOCAL_DIR)/aosp_arm.mk \
@@ -86,6 +88,7 @@ PRODUCT_MAKEFILES += \
 
 COMMON_LUNCH_CHOICES := \
     aosp_arm64-trunk_staging-eng \
+    aosp_arm64_aohp-trunk_staging-userdebug \
     aosp_arm-trunk_staging-eng \
     aosp_x86_64-trunk_staging-eng \
     aosp_x86-trunk_staging-eng \
