@@ -229,6 +229,7 @@ android_system_image {
         "aohp-containerd",
         "aohp-rootfs-debian",
         "aohp_cgroup_conf",
+        "aohp_overlay_config",
         // handheld_system_ext
         "AccessibilityMenu",
         "WallpaperCropper",
