@@ -25,13 +25,14 @@ PRODUCT_PACKAGES += \
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/etc/permissions/privapp-permissions-aohp.xml \
     system/priv-app/AOHPAgentDriver/AOHPAgentDriver.apk \
+    system/priv-app/AOHPAgentDriver/oat/% \
     system/bin/aohp-containerd \
     system/etc/init/aohp-containerd.rc \
     system/etc/aohp/rootfs-templates/debian.tar.gz \
     system/etc/aohp/cgroup.conf
 
-# GSI has no vendor image of ours: carry the AOHP property on the system partition.
-PRODUCT_SYSTEM_PROPERTIES += ro.aohp.virtual_display_policy=true
+# GSI has no vendor image of ours and generic_system.mk forbids system props: use the product partition (folded into system.img on GSI).
+PRODUCT_PRODUCT_PROPERTIES += ro.aohp.virtual_display_policy=true
 
 PRODUCT_COPY_FILES += \
     device/google/cuttlefish/vsoc_x86_64/phone/aohp_overlay_config.xml:$(TARGET_COPY_OUT_PRODUCT)/overlay/config/config.xml
