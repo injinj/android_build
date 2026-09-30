@@ -20,8 +20,7 @@ PRODUCT_PACKAGES += \
     privapp-permissions-aohp \
     aohp-containerd \
     aohp-rootfs-debian \
-    aohp_cgroup_conf \
-    aohp_overlay_config
+    aohp_cgroup_conf
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/etc/permissions/privapp-permissions-aohp.xml \
@@ -35,3 +34,7 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
 # GSI has no vendor image of ours and generic_system.mk forbids system props: use the product partition (folded into system.img on GSI).
 PRODUCT_PRODUCT_PROPERTIES += ro.aohp.virtual_display_policy=true
 
+
+# Note: the Cuttlefish product also ships a product overlay config forcing gestural navigation
+# (aohp_overlay_config.xml). Not carried here: Soong-defined GSI images reject Kati-only files and
+# prebuilt_* modules cannot target product/overlay/config. Pick navigation style in Settings.
