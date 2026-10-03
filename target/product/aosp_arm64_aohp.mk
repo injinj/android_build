@@ -14,18 +14,25 @@ USE_SOONG_DEFINED_SYSTEM_IMAGE := true
 PRODUCT_NAME := aosp_arm64_aohp
 PRODUCT_MODEL := AOHP on ARM64
 
-# AOHP harness (see device/google/cuttlefish/vsoc_x86_64/phone/aosp_cf_aohp.mk for the Cuttlefish variant)
+# AOHP harness (see device/google/cuttlefish/vsoc_x86_64/phone/aosp_cf_aohp.mk for the Cuttlefish variant).
+# This product ships the AOHP Driver (org.aohp.driver: runtime/harness/terminal/web UI + the
+# agent bridge on 127.0.0.1:6666) instead of the stock AOHPAgentDriver demo app, plus the
+# OpenClaw Android app (ai.openclaw.app, presigned with its own key, plain system app).
+# AOHPDriver is platform-signed but not privileged: its permissions are all signature-level,
+# so no privapp-permissions allowlist is needed (privapp-permissions-aohp.xml is for the stock app).
 PRODUCT_PACKAGES += \
-    AOHPAgentDriver \
-    privapp-permissions-aohp \
+    AOHPDriver \
+    OpenClawAndroid \
     aohp-containerd \
     aohp-rootfs-debian \
     aohp_cgroup_conf
 
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
-    system/etc/permissions/privapp-permissions-aohp.xml \
-    system/priv-app/AOHPAgentDriver/AOHPAgentDriver.apk \
-    system/priv-app/AOHPAgentDriver/oat/% \
+    system/app/AOHPDriver/AOHPDriver.apk \
+    system/app/AOHPDriver/oat/% \
+    system/app/OpenClawAndroid/OpenClawAndroid.apk \
+    system/app/OpenClawAndroid/oat/% \
+    system/app/OpenClawAndroid/lib/% \
     system/bin/aohp-containerd \
     system/etc/init/aohp-containerd.rc \
     system/etc/aohp/rootfs-templates/debian.tar.gz \

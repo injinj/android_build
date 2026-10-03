@@ -218,14 +218,15 @@ android_system_image {
     }),
 }
 
-// system.img for aosp_arm64_aohp (GSI + AOHP agent harness; Debian container template)
+// system.img for aosp_arm64_aohp (GSI + AOHP agent harness; Debian container template).
+// Ships AOHP Driver + the OpenClaw Android app, not the stock AOHPAgentDriver demo app.
 android_system_image {
     name: "aosp_arm64_aohp_system_image",
     defaults: ["android_gsi_defaults"],
     deps: [
         // AOHP
-        "AOHPAgentDriver",
-        "privapp-permissions-aohp",
+        "AOHPDriver",
+        "OpenClawAndroid",
         "aohp-containerd",
         "aohp-rootfs-debian",
         "aohp_cgroup_conf",
