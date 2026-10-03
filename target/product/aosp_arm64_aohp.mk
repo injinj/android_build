@@ -22,6 +22,7 @@ PRODUCT_MODEL := AOHP on ARM64
 # so no privapp-permissions allowlist is needed (privapp-permissions-aohp.xml is for the stock app).
 PRODUCT_PACKAGES += \
     AOHPDriver \
+    initial-package-stopped-states-aohp.xml \
     OpenClawAndroid \
     aohp-containerd \
     aohp-rootfs-debian \
@@ -30,6 +31,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/app/AOHPDriver/AOHPDriver.apk \
     system/app/AOHPDriver/oat/% \
+    system/etc/sysconfig/initial-package-stopped-states-aohp.xml \
     system/app/OpenClawAndroid/OpenClawAndroid.apk \
     system/app/OpenClawAndroid/oat/% \
     system/app/OpenClawAndroid/lib/% \

@@ -226,6 +226,7 @@ android_system_image {
     deps: [
         // AOHP
         "AOHPDriver",
+        "initial-package-stopped-states-aohp.xml",
         "OpenClawAndroid",
         "aohp-containerd",
         "aohp-rootfs-debian",
